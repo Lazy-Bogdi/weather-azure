@@ -1,0 +1,28 @@
+{
+    "bindings": [
+        {
+            "authLevel": "anonymous",
+            "type": "httpTrigger",
+            "direction": "in",
+            "name": "req",
+            "methods": [
+                "get"
+            ],
+            "route": "getWeather/{date}"
+        },
+        {
+            "type": "http",
+            "direction": "out",
+            "name": "$return"
+        },
+        {
+            "type": "cosmosDB",
+            "direction": "in",
+            "name": "inputDocument",
+            "connectionStringSetting": "COSMOS_CONN_STRING",
+            "databaseName": "weatherdb",
+            "containerName": "temperatures",
+            "sqlQuery": "SELECT * FROM c WHERE c.id = {date}"
+        }
+    ]
+}
